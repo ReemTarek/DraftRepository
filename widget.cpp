@@ -70,12 +70,68 @@ void Widget::on_BusySlot_clicked()
 
 void Widget::on_TargetSlot_clicked()
 {
-    TargetSlot *Target = new TargetSlot;
+    TargetSlot *Target = new TargetSlot();
     scene->addItem(Target);
 }
 
 void Widget::on_Obstacle_clicked()
 {
     Obstacle *block = new Obstacle;
+    //QTransform q;
+   // q.rotate(45,block);
     scene->addItem(block);
+}
+
+void Widget::on_TargetSlot_2_clicked()
+{
+     TargetSlot *Target = new TargetSlot(45);
+     scene->addItem(Target);
+}
+
+void Widget::on_TargetSlot_3_clicked()
+{
+    TargetSlot *Target = new TargetSlot(-45);
+    scene->addItem(Target);
+}
+
+void Widget::on_TargetSlot_4_clicked()
+{
+    TargetSlot *Target = new TargetSlot(90);
+    scene->addItem(Target);
+}
+
+void Widget::on_FreeSlot_2_clicked()
+{
+    FreeSlot *free  = new FreeSlot(45);
+    scene->addItem(free);
+}
+
+void Widget::on_FreeSlot_3_clicked()
+{
+    FreeSlot *free  = new FreeSlot(-45);
+    scene->addItem(free);
+}
+
+void Widget::on_FreeSlot_4_clicked()
+{
+    FreeSlot *free  = new FreeSlot(90);
+    scene->addItem(free);
+}
+
+void Widget::on_BusySlot_2_clicked()
+{
+    OccupiedSlot *busy = new OccupiedSlot(45);
+    scene->addItem(busy);
+}
+
+void Widget::on_BusySlot_3_clicked()
+{
+    OccupiedSlot *busy = new OccupiedSlot(-45);
+    scene->addItem(busy);
+}
+
+void Widget::on_BusySlot_4_clicked()
+{
+    OccupiedSlot *busy = new OccupiedSlot(90);
+    scene->addItem(busy);
 }

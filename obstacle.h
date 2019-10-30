@@ -9,6 +9,7 @@
 
 class Obstacle : public GarageItems
 {
+
 public:
     Obstacle();
     QRectF boundingRect() const;

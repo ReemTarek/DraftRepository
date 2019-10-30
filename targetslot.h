@@ -11,7 +11,9 @@ class TargetSlot : public GarageItems
 {
 public:
     TargetSlot();
+    TargetSlot(int degree);
     QRectF boundingRect() const;
+    int theta=0;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) ;
 };
 

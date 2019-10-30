@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>400</height>
+    <width>915</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>10</x>
      <y>10</y>
-     <width>461</width>
+     <width>901</width>
      <height>381</height>
     </rect>
    </property>
@@ -26,47 +26,47 @@
   <widget class="QPushButton" name="FreeSlot">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>40</y>
-     <width>91</width>
+     <x>30</x>
+     <y>400</y>
+     <width>101</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
-    <string>Free Slot</string>
+    <string>Free Slot 0</string>
    </property>
   </widget>
   <widget class="QPushButton" name="TargetSlot">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>100</y>
-     <width>89</width>
+     <x>150</x>
+     <y>400</y>
+     <width>111</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
-    <string>Target Slot</string>
+    <string>Target Slot 0</string>
    </property>
   </widget>
   <widget class="QPushButton" name="BusySlot">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>170</y>
-     <width>89</width>
+     <x>280</x>
+     <y>400</y>
+     <width>101</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
-    <string>Busy Slot</string>
+    <string>Busy Slot 0</string>
    </property>
   </widget>
   <widget class="QPushButton" name="Obstacle">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>230</y>
+     <x>400</x>
+     <y>400</y>
      <width>89</width>
      <height>25</height>
     </rect>
@@ -75,6 +75,137 @@
     <string>Obstacle</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="TargetSlot_2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>430</y>
+     <width>111</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Target slot 45</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="TargetSlot_3">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>460</y>
+     <width>111</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Target Slot -45</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="TargetSlot_4">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>490</y>
+     <width>111</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Target Slot 90</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="FreeSlot_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>430</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Free Slot 45</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="FreeSlot_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>460</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Free Slot -45</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="FreeSlot_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>490</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Free Slot 90</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="BusySlot_2">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>430</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Busy Slot 45</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="BusySlot_3">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>460</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Busy Slot -45</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="BusySlot_4">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>490</y>
+     <width>101</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Busy Slot 90</string>
+   </property>
+  </widget>
+  <zorder>TargetSlot_4</zorder>
+  <zorder>graphicsView</zorder>
+  <zorder>FreeSlot</zorder>
+  <zorder>TargetSlot</zorder>
+  <zorder>BusySlot</zorder>
+  <zorder>Obstacle</zorder>
+  <zorder>TargetSlot_2</zorder>
+  <zorder>TargetSlot_3</zorder>
+  <zorder>FreeSlot_2</zorder>
+  <zorder>FreeSlot_3</zorder>
+  <zorder>FreeSlot_4</zorder>
+  <zorder>BusySlot_2</zorder>
+  <zorder>BusySlot_3</zorder>
+  <zorder>BusySlot_4</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

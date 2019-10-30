@@ -8,6 +8,7 @@
 #include<QRectF>
 class GarageItems : public QGraphicsItem
 {
+
 public:
     GarageItems();
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) = 0;

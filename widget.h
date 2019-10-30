@@ -37,6 +37,24 @@ private slots:
 
     void on_Obstacle_clicked();
 
+    void on_TargetSlot_2_clicked();
+
+    void on_TargetSlot_3_clicked();
+
+    void on_TargetSlot_4_clicked();
+
+    void on_FreeSlot_2_clicked();
+
+    void on_FreeSlot_3_clicked();
+
+    void on_FreeSlot_4_clicked();
+
+    void on_BusySlot_2_clicked();
+
+    void on_BusySlot_3_clicked();
+
+    void on_BusySlot_4_clicked();
+
 private:
     Ui::Widget *ui;
     QPushButton *freeslot;

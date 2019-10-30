@@ -11,6 +11,8 @@ class OccupiedSlot : public GarageItems
 {
 public:
     OccupiedSlot();
+    OccupiedSlot(int theta);
+    int theta = 0;
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) ;
 };
