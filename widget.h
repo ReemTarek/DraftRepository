@@ -7,7 +7,7 @@
 #include <QtGui>
 #include <QtCore>
 #include <QPushButton>
-
+#include<car.h>
 namespace Ui {
 class Widget;
 }
@@ -54,12 +54,13 @@ private slots:
     void on_BusySlot_3_clicked();
 
     void on_BusySlot_4_clicked();
-
+    void on_ResetCarPos_clicked();
 private:
     Ui::Widget *ui;
     QPushButton *freeslot;
     QGraphicsScene *scene;
     QGraphicsView *view;
+    Car *car;
 
 
 };

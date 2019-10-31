@@ -22,7 +22,9 @@ QRectF TargetSlot::boundingRect() const
 void TargetSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF Slot = boundingRect();
-    QBrush brush(Qt::blue);
+    QColor green30 = Qt::green;
+    green30.setAlphaF( 0.3 );
+    QBrush brush(green30);
     painter->fillRect(Slot, brush);
     painter->drawRect(Slot);
     setRotation(theta);
