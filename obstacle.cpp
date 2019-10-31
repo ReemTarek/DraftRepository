@@ -18,7 +18,9 @@ QRectF Obstacle::boundingRect() const
 void Obstacle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF Slot = boundingRect();
-    QBrush brush(Qt::black);
+    QColor blue30 = Qt::blue;
+    blue30.setAlphaF( 0.3 );
+    QBrush brush(blue30);
     painter->setRenderHint(QPainter::Antialiasing);
     painter->fillRect(Slot, brush);
     painter->drawRect(Slot);

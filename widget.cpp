@@ -6,6 +6,8 @@
 #include "targetslot.h"
 #include "obstacle.h"
 #include <iostream>
+#include<QtCore>
+#include<QtGui>
 using namespace std;
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -15,7 +17,9 @@ Widget::Widget(QWidget *parent) :
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0,0,430,341);
-
+    scene->setBackgroundBrush(Qt::Dense7Pattern);
+    car = new Car();
+    scene->addItem(car);
 
     ui->graphicsView->setScene(scene);
 
@@ -24,6 +28,8 @@ Widget::Widget(QWidget *parent) :
     //connectToGui();
 
 }
+
+
 
 Widget::~Widget()
 {
@@ -134,4 +140,12 @@ void Widget::on_BusySlot_4_clicked()
 {
     OccupiedSlot *busy = new OccupiedSlot(90);
     scene->addItem(busy);
+}
+
+void Widget::on_ResetCarPos_clicked()
+{
+    int x = ui->Car_x->toPlainText().toInt();
+    int y = ui->Car_y->toPlainText().toInt();
+    int phi = ui->Car_phi->toPlainText().toInt();
+    car->resetCarPos(x, y, phi);
 }

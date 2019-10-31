@@ -23,7 +23,9 @@ QRectF OccupiedSlot::boundingRect() const
 void OccupiedSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF Slot = boundingRect();
-    QBrush brush(Qt::red);
+    QColor red30 = Qt::red;
+    red30.setAlphaF( 0.3 );
+    QBrush brush(red30);
     painter->fillRect(Slot, brush);
     painter->drawRect(Slot);
     setRotation(theta);
