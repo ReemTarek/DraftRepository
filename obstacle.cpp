@@ -17,6 +17,7 @@ QRectF Obstacle::boundingRect() const
 
 void Obstacle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    setScale(0.7);
     QRectF Slot = boundingRect();
     QColor blue30 = Qt::blue;
     blue30.setAlphaF( 0.3 );

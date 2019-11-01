@@ -19,6 +19,7 @@ QRectF FreeSlot::boundingRect() const
 
 void FreeSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    setScale(0.7);
     QRectF Slot = boundingRect();
     QColor yellow30 = Qt::yellow;
     yellow30.setAlphaF( 0.3 );

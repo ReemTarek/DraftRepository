@@ -22,6 +22,7 @@ QRectF OccupiedSlot::boundingRect() const
 
 void OccupiedSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    setScale(0.7);
     QRectF Slot = boundingRect();
     QColor red30 = Qt::red;
     red30.setAlphaF( 0.3 );

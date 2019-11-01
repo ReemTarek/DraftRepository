@@ -20,7 +20,7 @@ void Car::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-
+    setScale(0.5);
     painter->setBrush(Qt::green);
     painter->drawRect(-20, -58, 40, 2); // front axel
     painter->drawRect(-20, 7, 40, 2); // rear axel

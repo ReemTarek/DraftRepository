@@ -21,6 +21,7 @@ QRectF TargetSlot::boundingRect() const
 
 void TargetSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    setScale(0.7);
     QRectF Slot = boundingRect();
     QColor green30 = Qt::green;
     green30.setAlphaF( 0.3 );
