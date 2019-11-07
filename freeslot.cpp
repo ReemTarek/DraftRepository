@@ -45,7 +45,3 @@ void FreeSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 
 }
 
-bool FreeSlot::operator ==(const GarageItems &other)
-{
-
-}
