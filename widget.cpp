@@ -8,7 +8,9 @@
 #include <iostream>
 #include<QtCore>
 #include<QtGui>
+#include<QPointF>
 using namespace std;
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -35,6 +37,8 @@ Widget::~Widget()
 {
     delete ui;
 }
+
+
 //void Widget::connectToGui()
 //{
 //    connect(freeslot, SIGNAL(clicked(bool)), this, SLOT(addFreeSlot()));
@@ -72,6 +76,7 @@ void Widget::on_BusySlot_clicked()
 {
     OccupiedSlot *Busy = new OccupiedSlot();
     scene->addItem(Busy);
+//    qDebug()<<"p"<<view->itemAt(Busy->x(), Busy->y());
 }
 
 void Widget::on_TargetSlot_clicked()
@@ -86,6 +91,7 @@ void Widget::on_Obstacle_clicked()
     //QTransform q;
    // q.rotate(45,block);
     scene->addItem(block);
+    full.insert(block);
 }
 
 void Widget::on_TargetSlot_2_clicked()
@@ -128,18 +134,21 @@ void Widget::on_BusySlot_2_clicked()
 {
     OccupiedSlot *busy = new OccupiedSlot(45);
     scene->addItem(busy);
+    full.insert(busy);
 }
 
 void Widget::on_BusySlot_3_clicked()
 {
     OccupiedSlot *busy = new OccupiedSlot(-45);
     scene->addItem(busy);
+    full.insert(busy);
 }
 
 void Widget::on_BusySlot_4_clicked()
 {
     OccupiedSlot *busy = new OccupiedSlot(90);
     scene->addItem(busy);
+    full.insert(busy);
 }
 
 void Widget::on_ResetCarPos_clicked()
@@ -148,4 +157,15 @@ void Widget::on_ResetCarPos_clicked()
     int y = ui->Car_y->toPlainText().toInt();
     int phi = ui->Car_phi->toPlainText().toInt();
     car->resetCarPos(x, y, phi);
+    view->itemAt(view->width()-1,view->height()-1);
+       qDebug() << "Occupied";
+    for(int i = 0; i < view->height(); i++){
+        for(int j = 0; j < view->width(); j++){
+                if(full.find(view->itemAt(i, j)) != full.end()){
+                   qDebug() << "Occupied";
+                }else{
+                       qDebug() << "Occupied";
+                }
+        }
+    }
 }

@@ -16,6 +16,11 @@ void Car::resetCarPos(int x, int y, int phi)
     setPos(x, y);
     setRotation(phi);
 }
+
+QColor Car::getColor()
+{
+    return color.color();
+}
 void Car::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
