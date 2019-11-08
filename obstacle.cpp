@@ -7,6 +7,9 @@ using namespace std;
 Obstacle::Obstacle()
 {
     setFlag(ItemIsMovable);
+    QColor blue30 = Qt::blue;
+    blue30.setAlphaF( 0.3 );
+    color = blue30;
 
 }
 QRectF Obstacle::boundingRect() const
@@ -17,22 +20,22 @@ QRectF Obstacle::boundingRect() const
 
 void Obstacle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    setScale(0.7);
     QRectF Slot = boundingRect();
-    QColor blue30 = Qt::blue;
-    blue30.setAlphaF( 0.3 );
-    QBrush brush(blue30);
+
+    QBrush brush(color);
     painter->setRenderHint(QPainter::Antialiasing);
     painter->fillRect(Slot, brush);
     painter->drawRect(Slot);
 //    setRotation(45);
-    cout<<"paintes"<<endl;
+//    cout<<"paintes"<<endl;
 
-    cout<<"rotatoted"<<endl;
+  //  cout<<"rotatoted"<<endl;
     //update(10,10,30,50);
     QPointF newpoint = mapToParent((boundingRect().width()),(boundingRect().width()+ 10));
     if(!scene()->sceneRect().contains(newpoint)){
         //move back in bounds
-        cout<<"out of bound!!!"<<endl;
+    //    cout<<"out of bound!!!"<<endl;
 //        setPos(10,10);
 
     }

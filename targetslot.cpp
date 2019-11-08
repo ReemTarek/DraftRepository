@@ -7,12 +7,19 @@ using namespace std;
 TargetSlot::TargetSlot()
 {
     setFlag(ItemIsMovable);
+    QColor green30 = Qt::green;
+    green30.setAlphaF( 0.3 );
+    color = green30;
 
 }
 TargetSlot::TargetSlot(int theta)
 {
     setFlag(ItemIsMovable);
     this->theta =theta;
+    QColor green30 = Qt::green;
+    green30.setAlphaF( 0.3 );
+    color = green30;
+
 }
 QRectF TargetSlot::boundingRect() const
 {
@@ -21,10 +28,10 @@ QRectF TargetSlot::boundingRect() const
 
 void TargetSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    setScale(0.7);
     QRectF Slot = boundingRect();
-    QColor green30 = Qt::green;
-    green30.setAlphaF( 0.3 );
-    QBrush brush(green30);
+
+    QBrush brush(color);
     painter->fillRect(Slot, brush);
     painter->drawRect(Slot);
     setRotation(theta);
@@ -32,7 +39,7 @@ void TargetSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
                                                                10));
     if(!scene()->sceneRect().contains(newpoint)){
         //move back in bounds
-        cout<<"out of bound!!!"<<endl;
+        //cout<<"out of bound!!!"<<endl;
         //setPos(10,10);
 
     }

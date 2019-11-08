@@ -7,12 +7,18 @@ using namespace std;
 OccupiedSlot::OccupiedSlot()
 {
     setFlag(ItemIsMovable);
+    QColor red30 = Qt::red;
+    red30.setAlphaF( 0.3 );
+    color = red30;
 
 }
 OccupiedSlot::OccupiedSlot(int theta)
 {
     setFlag(ItemIsMovable);
     this->theta = theta;
+    QColor red30 = Qt::red;
+    red30.setAlphaF( 0.3 );
+    color = red30;
 
 }
 QRectF OccupiedSlot::boundingRect() const
@@ -22,10 +28,10 @@ QRectF OccupiedSlot::boundingRect() const
 
 void OccupiedSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    setScale(0.7);
     QRectF Slot = boundingRect();
-    QColor red30 = Qt::red;
-    red30.setAlphaF( 0.3 );
-    QBrush brush(red30);
+
+    QBrush brush(color);
     painter->fillRect(Slot, brush);
     painter->drawRect(Slot);
     setRotation(theta);
@@ -33,7 +39,7 @@ void OccupiedSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
                                                                10));
     if(!scene()->sceneRect().contains(newpoint)){
         //move back in bounds
-        cout<<"out of bound!!!"<<endl;
+        //cout<<"out of bound!!!"<<endl;
        // setPos(10,10);
 
     }

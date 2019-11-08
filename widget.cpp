@@ -8,7 +8,9 @@
 #include <iostream>
 #include<QtCore>
 #include<QtGui>
+#include<QPointF>
 using namespace std;
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -35,6 +37,8 @@ Widget::~Widget()
 {
     delete ui;
 }
+
+
 //void Widget::connectToGui()
 //{
 //    connect(freeslot, SIGNAL(clicked(bool)), this, SLOT(addFreeSlot()));
@@ -72,6 +76,7 @@ void Widget::on_BusySlot_clicked()
 {
     OccupiedSlot *Busy = new OccupiedSlot();
     scene->addItem(Busy);
+//    qDebug()<<"p"<<view->itemAt(Busy->x(), Busy->y());
 }
 
 void Widget::on_TargetSlot_clicked()
@@ -86,6 +91,7 @@ void Widget::on_Obstacle_clicked()
     //QTransform q;
    // q.rotate(45,block);
     scene->addItem(block);
+
 }
 
 void Widget::on_TargetSlot_2_clicked()
@@ -128,24 +134,38 @@ void Widget::on_BusySlot_2_clicked()
 {
     OccupiedSlot *busy = new OccupiedSlot(45);
     scene->addItem(busy);
+
 }
 
 void Widget::on_BusySlot_3_clicked()
 {
     OccupiedSlot *busy = new OccupiedSlot(-45);
     scene->addItem(busy);
+
 }
 
 void Widget::on_BusySlot_4_clicked()
 {
     OccupiedSlot *busy = new OccupiedSlot(90);
     scene->addItem(busy);
-}
 
-void Widget::on_ResetCarPos_clicked()
+}
+void Widget::move_down(){
+    car->setPos(car->x(), car->y()+5);
+}
+void Widget::move_left(){
+     car->setPos(car->x() - 5, car->y());
+}
+void Widget::move_right(){
+     car->setPos(car->x()+ 5, car->y());
+}
+void Widget::move_up(){
+     car->setPos(car->x() , car->y()-5);
+}
+void Widget::on_Change_Direction_clicked()
 {
-    int x = ui->Car_x->toPlainText().toInt();
-    int y = ui->Car_y->toPlainText().toInt();
+
     int phi = ui->Car_phi->toPlainText().toInt();
-    car->resetCarPos(x, y, phi);
+    car->resetCarPos(car->x(),car->y(), phi);
+
 }

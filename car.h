@@ -10,6 +10,7 @@ public:
     Car();
     QRectF boundingRect() const;
     void resetCarPos(int x, int y, int phi);
+    QColor getColor();
 protected:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
 

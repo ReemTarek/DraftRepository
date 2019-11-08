@@ -8,6 +8,8 @@
 #include <QtCore>
 #include <QPushButton>
 #include<car.h>
+#include<set>
+using namespace std;
 namespace Ui {
 class Widget;
 }
@@ -16,11 +18,13 @@ class Widget : public QWidget
 {
     Q_OBJECT
 
-public:
+public:  
     explicit Widget(QWidget *parent = 0);
     //void connectToGui();
     //void setupBoard();
     ~Widget();
+
+
 public slots:
 //    void addFreeSlot();
    // void addOccupiedSlot();
@@ -29,6 +33,7 @@ public slots:
 
 
 private slots:
+
     void on_FreeSlot_clicked();
 
     void on_BusySlot_clicked();
@@ -54,15 +59,17 @@ private slots:
     void on_BusySlot_3_clicked();
 
     void on_BusySlot_4_clicked();
-    void on_ResetCarPos_clicked();
+    void on_Change_Direction_clicked();
+    void move_up();
+    void move_down();
+    void move_left();
+    void move_right();
 private:
     Ui::Widget *ui;
     QPushButton *freeslot;
     QGraphicsScene *scene;
     QGraphicsView *view;
     Car *car;
-
-
 };
 
 #endif // WIDGET_H
