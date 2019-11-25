@@ -30,7 +30,8 @@ SOURCES += \
     freeslot.cpp \
     occupiedslot.cpp \
     obstacle.cpp \
-    targetslot.cpp
+    targetslot.cpp\
+    car.cpp
 
 HEADERS += \
         widget.h \
@@ -38,7 +39,8 @@ HEADERS += \
     freeslot.h \
     occupiedslot.h \
     obstacle.h \
-    targetslot.h
+    targetslot.h\
+    car.h
 
 FORMS += \
         widget.ui
