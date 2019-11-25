@@ -60,3 +60,15 @@ void Car::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
     painter->drawRect(-30, 0, 12, 17); // rear left
     painter->drawRect(19, 0, 12, 17);  // rear right
 }
+void Car::advance(int phase)
+{
+   if(!phase) return;
+   setPos(mapToParent(0,-(10)));
+
+//   count++;
+//   if (count==2)
+//   {
+//       QTimer *t = new QTimer(this);
+//       t->stop();
+//   }
+}
