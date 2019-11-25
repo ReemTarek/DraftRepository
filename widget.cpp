@@ -28,6 +28,8 @@ Widget::Widget(QWidget *parent) :
     //view = new QGraphicsView(this);
 
     //connectToGui();
+    timer = new QTimer(this);
+
 
 }
 
@@ -162,10 +164,22 @@ void Widget::move_right(){
 void Widget::move_up(){
      car->setPos(car->x() , car->y()-5);
 }
-void Widget::on_Change_Direction_clicked()
-{
+//void Widget::on_Change_Direction_clicked()
+//{
 
-    int phi = ui->Car_phi->toPlainText().toInt();
-    car->resetCarPos(car->x(),car->y(), phi);
+//    int phi = ui->Car_phi->toPlainText().toInt();
+//    car->resetCarPos(car->x(),car->y(), phi);
+
+//}
+
+void Widget::on_pushButton_5_clicked()
+{
+    timer->stop();
+}
+
+void Widget::on_pushButton_6_clicked()
+{
+    connect(timer,SIGNAL(timeout()),scene,SLOT(advance()));
+    timer->start(100);
 
 }
