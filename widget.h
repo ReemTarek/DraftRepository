@@ -23,6 +23,7 @@ public:
     //void connectToGui();
     //void setupBoard();
     ~Widget();
+    QTimer *timer;
 
 
 public slots:
@@ -59,11 +60,15 @@ private slots:
     void on_BusySlot_3_clicked();
 
     void on_BusySlot_4_clicked();
-    void on_Change_Direction_clicked();
+    //void on_Change_Direction_clicked();
     void move_up();
     void move_down();
     void move_left();
     void move_right();
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
+
 private:
     Ui::Widget *ui;
     QPushButton *freeslot;
@@ -72,4 +77,4 @@ private:
     Car *car;
 };
 
-#endif // WIDGET_H
+#endif // WIDGET_HH
