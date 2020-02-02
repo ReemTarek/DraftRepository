@@ -11,3 +11,8 @@ QRectF GarageItems::boundingRect() const
 
 
 }
+
+QColor GarageItems::getColor()
+{return color;
+
+}
