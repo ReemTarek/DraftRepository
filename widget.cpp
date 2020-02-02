@@ -29,15 +29,49 @@ Widget::Widget(QWidget *parent) :
     ui->graphicsView->setScene(scene);
 
 
+    
+    //connectToGui();
     timer = new QTimer(this);
+
 
 connect(ui->movetotarget, SIGNAL(clicked(bool)), this, SLOT(on_move_to_target_clicked()));
 }
+
+
 
 Widget::~Widget()
 {
     delete ui;
 }
+
+
+
+//void Widget::connectToGui()
+//{
+//    connect(freeslot, SIGNAL(clicked(bool)), this, SLOT(addFreeSlot()));
+//}
+//void Widget::setupBoard()
+//{
+
+
+//  view->centerOn(50, 50);
+//  QRectF rec(0, 0, 500, 500);
+//  scene->setSceneRect(rec);
+//  //scene->addItem(myCar);
+
+//view->setScene(scene);
+
+
+// freeslot->setText("Add FreeSlot");
+
+
+
+//}
+//void Widget::addFreeSlot()
+//{
+//    FreeSlot *free = new FreeSlot;
+//    scene->addItem(free);
+//}
 
 void Widget::on_FreeSlot_clicked()
 {FreeSlot *free = new FreeSlot;
@@ -122,6 +156,39 @@ void Widget::on_BusySlot_4_clicked()
 {
     OccupiedSlot *busy = new OccupiedSlot(90);
     scene->addItem(busy);
+
+
+}
+void Widget::move_down(){
+    car->setPos(car->x(), car->y()+5);
+}
+void Widget::move_left(){
+     car->setPos(car->x() - 5, car->y());
+}
+void Widget::move_right(){
+     car->setPos(car->x()+ 5, car->y());
+}
+void Widget::move_up(){
+     car->setPos(car->x() , car->y()-5);
+}
+//void Widget::on_Change_Direction_clicked()
+//{
+
+//    int phi = ui->Car_phi->toPlainText().toInt();
+//    car->resetCarPos(car->x(),car->y(), phi);
+
+//}
+
+void Widget::on_pushButton_5_clicked()
+{
+    timer->stop();
+}
+
+void Widget::on_pushButton_6_clicked()
+{
+    connect(timer,SIGNAL(timeout()),scene,SLOT(advance()));
+    timer->start(100);
+
 
 }
 
