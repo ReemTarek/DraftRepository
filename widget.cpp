@@ -9,6 +9,7 @@
 #include<QtCore>
 #include<QtGui>
 #include<QPointF>
+#include<QDebug>
 using namespace std;
 
 Widget::Widget(QWidget *parent) :
@@ -21,50 +22,22 @@ Widget::Widget(QWidget *parent) :
     scene->setSceneRect(0,0,430,341);
     scene->setBackgroundBrush(Qt::Dense7Pattern);
     car = new Car();
+    targetSlot = new TargetSlot();
+    scene->addItem(targetSlot);
     scene->addItem(car);
 
     ui->graphicsView->setScene(scene);
 
-    //view = new QGraphicsView(this);
 
-    //connectToGui();
+    timer = new QTimer(this);
 
+connect(ui->movetotarget, SIGNAL(clicked(bool)), this, SLOT(on_move_to_target_clicked()));
 }
-
-
 
 Widget::~Widget()
 {
     delete ui;
 }
-
-
-//void Widget::connectToGui()
-//{
-//    connect(freeslot, SIGNAL(clicked(bool)), this, SLOT(addFreeSlot()));
-//}
-//void Widget::setupBoard()
-//{
-
-
-//  view->centerOn(50, 50);
-//  QRectF rec(0, 0, 500, 500);
-//  scene->setSceneRect(rec);
-//  //scene->addItem(myCar);
-
-//view->setScene(scene);
-
-
-// freeslot->setText("Add FreeSlot");
-
-
-
-//}
-//void Widget::addFreeSlot()
-//{
-//    FreeSlot *free = new FreeSlot;
-//    scene->addItem(free);
-//}
 
 void Widget::on_FreeSlot_clicked()
 {FreeSlot *free = new FreeSlot;
@@ -81,8 +54,8 @@ void Widget::on_BusySlot_clicked()
 
 void Widget::on_TargetSlot_clicked()
 {
-    TargetSlot *Target = new TargetSlot();
-    scene->addItem(Target);
+    targetSlot->theta=0;
+    targetSlot->update();
 }
 
 void Widget::on_Obstacle_clicked()
@@ -96,20 +69,20 @@ void Widget::on_Obstacle_clicked()
 
 void Widget::on_TargetSlot_2_clicked()
 {
-     TargetSlot *Target = new TargetSlot(45);
-     scene->addItem(Target);
+     targetSlot->theta = 45;
+     targetSlot->update();
 }
 
 void Widget::on_TargetSlot_3_clicked()
 {
-    TargetSlot *Target = new TargetSlot(-45);
-    scene->addItem(Target);
+    targetSlot->theta = -45;
+    targetSlot->update();
 }
 
 void Widget::on_TargetSlot_4_clicked()
 {
-    TargetSlot *Target = new TargetSlot(90);
-    scene->addItem(Target);
+  targetSlot->theta = 90;
+  targetSlot->update();
 }
 
 void Widget::on_FreeSlot_2_clicked()
@@ -122,6 +95,7 @@ void Widget::on_FreeSlot_3_clicked()
 {
     FreeSlot *free  = new FreeSlot(-45);
     scene->addItem(free);
+    cout<<"hi\n";
 }
 
 void Widget::on_FreeSlot_4_clicked()
@@ -150,22 +124,25 @@ void Widget::on_BusySlot_4_clicked()
     scene->addItem(busy);
 
 }
-void Widget::move_down(){
-    car->setPos(car->x(), car->y()+5);
-}
-void Widget::move_left(){
-     car->setPos(car->x() - 5, car->y());
-}
-void Widget::move_right(){
-     car->setPos(car->x()+ 5, car->y());
-}
-void Widget::move_up(){
-     car->setPos(car->x() , car->y()-5);
-}
-void Widget::on_Change_Direction_clicked()
+
+void Widget::Run()
 {
+    double v = ui->v->toPlainText().toDouble();
+    double phi = ui->phi->toPlainText().toDouble();
+    double dt = ui->dt->toPlainText().toDouble();
+    car->run(v, phi, dt);
 
-    int phi = ui->Car_phi->toPlainText().toInt();
-    car->resetCarPos(car->x(),car->y(), phi);
 
 }
+
+void Widget::on_move_to_target_clicked()
+{
+    double targetX = targetSlot->x();
+    double targetY = targetSlot->y();
+    int dir = ui->moveToTarget->toPlainText().toInt();
+    car->moveToTarget(targetX, targetY, dir);
+
+}
+
+
+

@@ -1,21 +1,27 @@
 #include "car.h"
-
+#include<cmath>
+#include<iostream>
+using namespace std;
+typedef long double ld;
 Car::Car(): color(Qt::gray), wheelsAngle(0)
 {
-   setPos(100, 100);
+
+   setScale(0.5);
    setFlag(QGraphicsItem::ItemIsMovable, true);
    setZValue(1);
+   pos.rx() = 0;
+   pos.ry() = 0;
+   wheelBase = 32.5;
+   phiMax = 30;
+   theta = 0;
+ //  iteration = 0;
 }
 QRectF Car::boundingRect() const
 {
     return QRectF(-35, -81, 70, 115);
 }
 
-void Car::resetCarPos(int x, int y, int phi)
-{
-    setPos(x, y);
-    setRotation(phi);
-}
+
 
 QColor Car::getColor()
 {
@@ -25,7 +31,10 @@ void Car::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    setScale(0.5);
+
+    //setRotation(90);
+    setPos(pos);
+    setRotation(90+theta);
     painter->setBrush(Qt::green);
     painter->drawRect(-20, -58, 40, 2); // front axel
     painter->drawRect(-20, 7, 40, 2); // rear axel
@@ -59,4 +68,129 @@ void Car::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
 
     painter->drawRect(-30, 0, 12, 17); // rear left
     painter->drawRect(19, 0, 12, 17);  // rear right
+}
+/*void Car::setPos(QPoint pos) {
+    this->pos = pos;
+}*/
+QPointF Car::getPos() {
+    return pos;
+}
+
+void Car::setTheta(double theta) {
+    this->theta = theta;
+}
+
+double Car::getTheta() {
+    return theta;
+}
+
+QPair<ld,ld> Car::moveToTarget(double xtarget, double ytarget, int dir)
+{
+
+   ld x0, y0,  t=10;
+   x0=pos.rx(), y0 = pos.ry();
+   ld thetaRad = theta*PI / 180;
+   ld x = xtarget - x0,  y = ytarget - y0, v = hypot(x, y)/t*dir;
+   ld b = sin(thetaRad), a = cos(thetaRad), c = v*b, d = v * a, e = v * b - y;
+   ld A = (e*e + (x-d)*(x-d)), B = 2*e*d+2*c*(x-d), C = d*d-v*v+c*c;
+    if(B*B < 4*A*C){
+        cout << "NO";
+        return{-1, -1};
+    }else{
+
+        ld alphaPos = (-B+sqrt(B*B-4*A*C)) / (2*A);
+        ld alphaNeg = (-B-sqrt(B*B-4*A*C)) / (2*A);
+        ld g = thetaRad+alphaPos*(t-1);
+        ld gd = thetaRad+alphaNeg*(t-1);
+        ld xp=v/alphaPos*sin(g)-v/alphaPos*sin(thetaRad)+v*cos(thetaRad);
+        ld yp = -v/alphaPos*cos(g)+v/alphaPos*cos(thetaRad)+v*sin(thetaRad);
+        ld xpd = v/alphaNeg*sin(gd)-v/alphaNeg*sin(thetaRad)+v*cos(thetaRad);
+        ld ypd=-v/alphaNeg*cos(gd)+v/alphaNeg*cos(thetaRad)+v*sin(thetaRad);
+        ld phi=atan(alphaPos*wheelBase/v)*180/PI;
+        ld phid = atan(alphaNeg*wheelBase/v)*180/PI;
+        ld d1 = hypot(xp-x, yp-y);
+        ld d2 = hypot(xpd-x,ypd-y);
+      if(d2<d1){
+          cout <<alphaNeg*180/PI<<" "<< xpd << " " << ypd << endl;
+          cout << phid;
+
+          run(v, phid, t);
+          return {v, phid};
+
+    }else{
+          cout <<alphaPos*180/PI<<" "<< xp << " " << yp << endl;
+          cout << phi;
+          run(v, phi, t);
+          return {v, phi};
+       }
+    }
+
+}
+
+void Car::setWheelBase(double wheelBase) {
+    this->wheelBase = wheelBase;
+}
+
+double Car::getWheelBase() {
+    return wheelBase;
+}
+
+void Car::setPhiMax(double phiMax) {
+    this->phiMax = phiMax;
+}
+
+double Car::getPhiMax() {
+    return phiMax;
+}
+
+/*void Car::update(double dx, double dy, double dtheta, double dt) {
+    pos.rx() += dx * dt * 1000;
+    pos.ry() += dy * dt * 1000;
+    theta += dtheta * dt;
+
+}*/
+/*void Car::timerEvent(QTimerEvent *event)
+{
+    Q_UNUSED(event);
+    if(iteration == dt){
+
+        iteration = 0;
+        killTimer(timerId);
+
+    }else{
+         double thetaInRadian = theta * PI / 180;
+    dx = v * cos(thetaInRadian);
+    dy = v * sin(thetaInRadian);
+    pos.rx() += dx ;
+    pos.ry() += dy ;
+    theta += dtheta;
+    ++iteration;
+     cout << pos.ry() <<" " <<dtheta<<endl;
+    update();
+  }
+
+}*/
+QPair<QPointF, double> Car::run(double v, double phi, int dt) {
+    if (phi > phiMax)
+        phi = phiMax;
+    if (phi < -phiMax)
+        phi = -phiMax;
+     wheelsAngle = phi;
+     double phiInRadian = phi * PI / 180; 
+     double dtheta = v / (wheelBase) * tan(phiInRadian) * 180 / PI;
+     ld thetaRad = theta*PI/180;
+     ld dthetaRad = dtheta*PI/180,dx,dy;
+     if(dtheta==0)
+         dx = v*cos(thetaRad)*dt, dy = v * sin(thetaRad)*dt;
+     else{
+      dx = v/dthetaRad*sin(thetaRad+dthetaRad*(dt-1))-v/dthetaRad*sin(thetaRad)+v*cos(thetaRad);
+      dy = -v/dthetaRad*cos(thetaRad+dthetaRad*(dt-1))+v/dthetaRad*cos(thetaRad)+v*sin(thetaRad);
+     }
+
+     pos.rx()+=dx;
+     pos.ry()+=dy;
+     theta+=dtheta*dt;
+     update();
+     //timerId = startTimer(1000/33);
+     return {pos, theta};//need to be fixed
 }

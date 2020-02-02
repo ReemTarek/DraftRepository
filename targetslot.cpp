@@ -23,12 +23,12 @@ TargetSlot::TargetSlot(int theta)
 }
 QRectF TargetSlot::boundingRect() const
 {
-    return QRectF(10, 10, 50, 100);
+    return QRectF(0, 0, 90, 40);
 }
 
 void TargetSlot::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    setScale(0.7);
+  //  setScale(0.7);
     QRectF Slot = boundingRect();
 
     QBrush brush(color);
